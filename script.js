@@ -57,8 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateBirthday(input) {
         const birthDate = new Date(input.value);
         const currentDate = new Date();
+        const birthDay = birthDate.getDate();
+        const birthMonth = birthDate.getMonth();
+        const currentDay = currentDate.getDate();
+        const currentMonth = currentDate.getMonth();
         const ageDiff = currentDate.getFullYear() - birthDate.getFullYear();
-        if (ageDiff < 18) {
+        if (ageDiff < 18 || (ageDiff === 18 && (birthMonth > currentMonth || (birthMonth === currentMonth && birthDay > currentDay)))) {
             input.setCustomValidity('Возраст регистрации должен быть не младше 18 лет');
         } else {
             input.setCustomValidity('');
